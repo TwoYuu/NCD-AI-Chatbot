@@ -10,6 +10,7 @@ const chatWindow = document.getElementById("chat-window");
 const input = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
 
+//Listens or waits for an "event" 
 sendBtn.addEventListener("click", handleSend);
 
 // Allow Enter key to send
