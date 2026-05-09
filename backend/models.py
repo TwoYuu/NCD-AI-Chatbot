@@ -11,5 +11,5 @@ class UserHealth(Base):
     sleep_hours = Column(Float)
     exercise_hours = Column(Float)
 
-    risk_score = Column(float)
+    risk_score = Column(Float)
     risk_level = Column(String)

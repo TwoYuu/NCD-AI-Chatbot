@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
+import uvicorn
 
 import models, schemas, scoring
 from database import engine, SessionLocal
@@ -9,7 +10,6 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Dependency to get DB session
-#Opens and closes database
 def get_db():
     db = SessionLocal()
     try:
@@ -17,18 +17,34 @@ def get_db():
     finally:
         db.close()
 
+
 @app.post("/analyze", response_model=schemas.UserHealthResponse)
-#analyze response from user
 def analyze(data: schemas.UserHealthCreate, db: Session = Depends(get_db)):
+    
+    # CALCULATE FIRST
+    score, level, message = scoring.calculate_score(data)
+
     # Save to database
-    db_data = models.UserHealth(**data.dict())
+    data_dict = data.dict()   # <- add ()
+
+    data_dict.update({
+        "risk_score": score,
+        "risk_level": level
+    })
+
+    db_data = models.UserHealth(**data_dict)
+
     db.add(db_data)
     db.commit()
     db.refresh(db_data)
 
-    # Calculate score
-    risk_score = scoring.calculate_score(data)
+    return {
+        "risk_score": score,
+        "risk_level": level,
+        "message": message
+    }
 
-    print("Risk Score:", risk_score)
 
-    return db_data
+# RUN APP
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

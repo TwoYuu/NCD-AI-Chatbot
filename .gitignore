@@ -1,1 +1,4 @@
 backend/database
+backend/venv
+backend/_pycache_
+backend/health.db
