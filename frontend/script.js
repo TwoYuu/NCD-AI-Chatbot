@@ -1,43 +1,41 @@
-/*
-Name: script.js
-Type: Frontend Logic (Placeholder)
-Location: /ui/script.js
-Summary:
-    Handles UI events only. No AI or backend logic implemented.
-*/
+const form = document.getElementById("healthForm");
 
-const chatWindow = document.getElementById("chat-window");
-const input = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-//Listens or waits for an "event" 
-sendBtn.addEventListener("click", handleSend);
+    // Collect values
+    const data = {
+        age: parseInt(document.getElementById("age").value),
+        weight: parseFloat(document.getElementById("weight").value),
+        height: parseFloat(document.getElementById("height").value),
+        sleep_hours: parseFloat(document.getElementById("sleep_hours").value),
+        exercise_hours: parseFloat(document.getElementById("exercise_hours").value)
+    };
 
-// Allow Enter key to send
-input.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        handleSend();
+    try {
+
+        const response = await fetch("http://127.0.0.1:8000/analyze", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        // Display results
+        document.getElementById("riskScore").textContent =
+            result.risk_score;
+
+        document.getElementById("riskLevel").textContent =
+            result.risk_level;
+
+        document.getElementById("message").textContent =
+            result.message;
+
+    } catch (error) {
+        console.error(error);
+        alert("Error connecting to backend");
     }
 });
-
-function handleSend() {
-    const message = input.value.trim();
-
-    if (!message) return;
-
-    addMessage("user", message);
-
-    // TODO: Replace this with actual AI/backend call
-    addMessage("bot", "[Bot response goes here]");
-
-    input.value = "";
-}
-
-function addMessage(sender, text) {
-    const msg = document.createElement("div");
-    msg.classList.add("message", sender);
-    msg.textContent = text;
-
-    chatWindow.appendChild(msg);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-}

@@ -2,3 +2,6 @@ backend/database
 backend/venv
 backend/_pycache_
 backend/health.db
+health.db
+*.db
+*.env

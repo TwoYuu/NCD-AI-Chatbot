@@ -1,35 +1,59 @@
-<!--
-Name: index.html
-Type: Frontend UI
-Location: /ui/index.html
-Summary:
-    Basic layout for chatbot interface. No logic included.
--->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>AI Chatbot Starter</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Risk Analyzer</title>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="app-container">
-        <h1>Chatbot UI (Starter)</h1>
 
-        <div id="chat-window">
-            <!-- Messages will appear here -->
-        </div>
+    <div class="container">
+        <h1>Health Risk Analyzer</h1>
 
-        <div class="input-area">
-            <input id="user-input" type="text" placeholder="Type your message..." />
-            <button id="send-btn">Send</button>
+        <form id="healthForm">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" id="age" required />
+            </div>
+
+            <div class="input-group">
+                <label>Weight (kg)</label>
+                <input type="number" id="weight" required />
+            </div>
+
+            <div class="input-group">
+                <label>Height (cm)</label>
+                <input type="number" id="height" required />
+            </div>
+
+            <div class="input-group">
+                <label>Sleep Hours</label>
+                <input type="number" step="0.1" id="sleep_hours" required />
+            </div>
+
+            <div class="input-group">
+                <label>Exercise Hours</label>
+                <input type="number" step="0.1" id="exercise_hours" required />
+            </div>
+
+            <button type="submit">Analyze Health</button>
+
+        </form>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+
+            <p><strong>Risk Score:</strong> <span id="riskScore">-</span></p>
+
+            <p><strong>Risk Level:</strong> <span id="riskLevel">-</span></p>
+
+            <p><strong>Message:</strong> <span id="message">-</span></p>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -53,6 +53,11 @@ def calculate_score(data):
 
     else:
         level = "High"
-        message = "High Health Risk"
+        message = "High Health Risk; Please consult a doctor"
 
     return score, level, message
+
+
+#For Future Reference:
+#For the AI, it can be kinda concerning if the user says that they are a 1 year old that
+#weighs 50 kg and is 180 cm. For now, we do not need to worry about these outliers
