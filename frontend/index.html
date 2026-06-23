@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Health Risk Analyzer</title>
-
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,42 +13,178 @@
 
         <form id="healthForm">
 
-            <div class="input-group">
-                <label>Age</label>
-                <input type="number" id="age" required />
-            </div>
+            <fieldset>
+                <legend>General Metrics</legend>
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" min="1" max="120" required />
+                </div>
 
-            <div class="input-group">
-                <label>Weight (kg)</label>
-                <input type="number" id="weight" required />
-            </div>
+                <div class="input-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" step="0.1" id="weight" min="1" required />
+                </div>
 
-            <div class="input-group">
-                <label>Height (cm)</label>
-                <input type="number" id="height" required />
-            </div>
+                <div class="input-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" step="0.1" id="height" min="1" required />
+                </div>
+            </fieldset>
 
-            <div class="input-group">
-                <label>Sleep Hours</label>
-                <input type="number" step="0.1" id="sleep_hours" required />
-            </div>
+            <fieldset>
+                <legend>Sleep & Night Habits</legend>
+                <div class="input-group">
+                    <label for="sleep_hours">Sleep Hours</label>
+                    <input type="number" step="0.1" id="sleep_hours" min="0" max="24" required />
+                </div>
 
-            <div class="input-group">
-                <label>Exercise Hours</label>
-                <input type="number" step="0.1" id="exercise_hours" required />
-            </div>
+                <div class="input-group">
+                    <label for="sleep_consistency">Sleep Consistency</label>
+                    <select id="sleep_consistency" required>
+                        <option value="3">Highly Consistent</option>
+                        <option value="2">Moderately Consistent</option>
+                        <option value="1">Highly Inconsistent</option>
+                    </select>
+                </div>
 
-            <button type="submit">Analyze Health</button>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="late_night_scrolling" /> Late Night Scrolling</label>
+                    <label><input type="checkbox" id="late_night_studying" /> Late Night Studying</label>
+                    <label><input type="checkbox" id="caffeine_at_night" /> Caffeine at Night</label>
+                    <label><input type="checkbox" id="sugar_at_night" /> Sugar at Night</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Physical Activity</legend>
+                <div class="input-group">
+                    <label for="exercise_hours">Exercise Hours</label>
+                    <input type="number" step="0.1" id="exercise_hours" min="0" max="24" required />
+                </div>
+
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="mostly_sitting" /> Mostly Sitting Throughout the Day</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Diet & Energy Levels</legend>
+                <div class="input-group">
+                    <label for="fruits_vegetables_frequency">Fruits & Vegetables Consumption</label>
+                    <select id="fruits_vegetables_frequency" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Occasionally</option>
+                        <option value="4">Frequently</option>
+                        <option value="5">Every Day</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="sugary_drinks_frequency">Sugary Drinks Intake</label>
+                    <select id="sugary_drinks_frequency" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Occasionally</option>
+                        <option value="4">Frequently</option>
+                        <option value="5">Every Day</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="caffeinated_drinks_frequency">Caffeinated Drinks Intake</label>
+                    <select id="caffeinated_drinks_frequency" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Occasionally</option>
+                        <option value="4">Frequently</option>
+                        <option value="5">Every Day</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="processed_food_frequency">Processed Food Consumption</label>
+                    <select id="processed_food_frequency" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Occasionally</option>
+                        <option value="4">Frequently</option>
+                        <option value="5">Every Day</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="energy_level">General Energy Level</label>
+                    <select id="energy_level" required>
+                        <option value="1">Tired / Low Energy</option>
+                        <option value="2">Moderate Energy</option>
+                        <option value="3">Energetic / High Energy</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Mental Health & Well-being</legend>
+                <div class="input-group">
+                    <label for="stress_level">Stress Level</label>
+                    <select id="stress_level" required>
+                        <option value="1">Minimal Stress</option>
+                        <option value="2">Moderate Stress</option>
+                        <option value="3">Very Stressed</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="overwhelmed_level">How often do you feel overwhelmed?</label>
+                    <select id="overwhelmed_level" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Sometimes</option>
+                        <option value="4">Often</option>
+                        <option value="5">Always</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="social_connection">Social Connection Quality</label>
+                    <select id="social_connection" required>
+                        <option value="1">Completely Isolated</option>
+                        <option value="2">Low Connection</option>
+                        <option value="3">Average Connection</option>
+                        <option value="4">Good Connection</option>
+                        <option value="5">Highly Connected</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Lifestyle Habits</legend>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="vape_cigarette" /> Use Vapes / Cigarettes</label>
+                    <label><input type="checkbox" id="alcohol" /> Consume Alcohol</label>
+                    <label><input type="checkbox" id="cannabis" /> Consume Cannabis</label>
+                </div>
+
+                <div class="input-group">
+                    <label for="excessive_drug_usage">Other Drug Usage Frequency</label>
+                    <select id="excessive_drug_usage" required>
+                        <option value="1">Never</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">Occasionally</option>
+                        <option value="4">Frequently</option>
+                        <option value="5">Every Day</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <button type="button" id="analyzeBtn">Analyze Health</button>
 
         </form>
 
         <div class="result" id="result">
             <h2>Results</h2>
-
             <p><strong>Risk Score:</strong> <span id="riskScore">-</span></p>
-
             <p><strong>Risk Level:</strong> <span id="riskLevel">-</span></p>
-
             <p><strong>Message:</strong> <span id="message">-</span></p>
         </div>
     </div>
