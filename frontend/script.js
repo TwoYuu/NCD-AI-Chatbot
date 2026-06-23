@@ -1,7 +1,7 @@
 console.log("script.js loaded");
 const form = document.getElementById("healthForm");
 
-document.getElementById("analyzeBtn").addEventListener("click", async (e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("Submit intercepted");
     // Collect values matching your schemas.py fields
