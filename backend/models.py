@@ -38,3 +38,5 @@ class UserHealth(Base):
     #Family Genetics
     risk_score = Column(Float)
     risk_level = Column(String)
+    #Gender
+    gender = Column(String, nullable=False)

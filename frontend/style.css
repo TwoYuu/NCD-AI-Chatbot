@@ -1,60 +1,226 @@
+/* ---------- Global ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #d6efdd;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    align-items: flex-start;
 }
+
+/* ---------- Main Container ---------- */
 
 .container {
     background: rgb(246, 245, 245);
-    width: 400px;
+
+    width: 100%;
+    max-width: 1000px;
+
     padding: 30px;
     border-radius: 12px;
+
     box-shadow: 0 0 10px rgba(172, 151, 81, 0.771);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 25px;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
 }
 
+/* ---------- Sections ---------- */
+
+fieldset {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+legend {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2d23e1;
+    padding: 0 10px;
+}
+
+/* ---------- Desktop Grid ---------- */
+
+fieldset {
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0;
+}
+
+/* ---------- Inputs ---------- */
+
 .input-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-input {
+input,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #d05252;
     border-radius: 8px;
     font-size: 14px;
 }
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #2d23e1;
+    box-shadow: 0 0 6px rgba(45, 35, 225, 0.3);
+}
+
+/* ---------- Checkbox Groups ---------- */
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+/* ---------- Button ---------- */
 
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
+
     background-color: #2d23e1;
     color: rgb(255, 210, 170);
+
     border: none;
     border-radius: 8px;
+
     font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
     cursor: pointer;
+
+    transition: 0.2s ease;
+
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #a21ec7;
 }
 
+/* ---------- Result ---------- */
+
 .result {
-    margin-top: 25px;
+    margin-top: 35px;
     padding: 15px;
+
     background-color: #88ff92;
     border-radius: 10px;
+
+    overflow-wrap: break-word;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 768px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    fieldset {
+        grid-template-columns: 1fr;
+    }
+
+    legend,
+    .checkbox-group {
+        grid-column: auto;
+    }
+    #healthForm {
+    grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    input,
+    select,
+    button {
+        font-size: 16px;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+}
+
+/* ---------- Large Screens ---------- */
+
+@media (min-width: 1400px) {
+
+    .container {
+        max-width: 1200px;
+    }
+
+    fieldset {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*Changes*/
+.container {
+    max-width: 1200px;
+}
+
+#healthForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+button,
+.result {
+    grid-column: 1 / -1;
 }

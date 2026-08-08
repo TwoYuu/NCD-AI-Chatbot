@@ -2,12 +2,15 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import uvicorn
-
+#TODO: Start up backend, cd frontend + python -m http.server 5500 in terminal, localhost:5500 in google
 import models, schemas, scoring
 from database import engine, SessionLocal
 
+
 #Creates database; database.py sets up essential variables
+
 models.Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
 
@@ -35,7 +38,7 @@ def get_db():
 def analyze(data: schemas.UserHealthCreate, db: Session = Depends(get_db)):
     
     # CALCULATE FIRST
-    score, level, message = scoring.calculate_score(data)
+    score, level, message, bmi, bmi_percentile = scoring.calculate_score(data)
 
     # Save to database - data_dict is where data is stored
     data_dict = data.dict()   # <- add ()
@@ -44,17 +47,25 @@ def analyze(data: schemas.UserHealthCreate, db: Session = Depends(get_db)):
         "risk_score": score,
         "risk_level": level
     })
-
+    print(data_dict)
     db_data = models.UserHealth(**data_dict)
+    print(db_data)
 
+    
     db.add(db_data)
+    print("About to save:")
+    print(data_dict)
     db.commit()
+    print("Database commit successful")
     db.refresh(db_data)
 
     return {
         "risk_score": score,
         "risk_level": level,
-        "message": message
+        "message": message,
+        "bmi": bmi,
+        "bmi_percentile": bmi_percentile
+        
     }
 
 

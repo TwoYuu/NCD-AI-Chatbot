@@ -1,15 +1,14 @@
-console.log("script.js loaded");
 const form = document.getElementById("healthForm");
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("Submit intercepted");
     // Collect values matching your schemas.py fields
     const data = {
         // Demographics & Physical Metrics
         age: parseInt(document.getElementById("age").value),
         weight: parseFloat(document.getElementById("weight").value),
         height: parseFloat(document.getElementById("height").value),
+        gender: document.getElementById("gender").value, 
 
         // Sleep & Night Habits
         sleep_hours: parseFloat(document.getElementById("sleep_hours").value),
@@ -56,19 +55,18 @@ form.addEventListener("submit", async (e) => {
         }
 
         const result = await response.json();
-        console.log("Received result:", result);
 
         // Display results
         document.getElementById("riskScore").textContent = result.risk_score;
-        console.log("Updated score");
         document.getElementById("riskLevel").textContent = result.risk_level;
-        console.log("Updated level");
         document.getElementById("message").textContent = result.message;
-        console.log("Updated message");
+        document.getElementById("bmi").textContent = result.bmi;
+        document.getElementById("bmiPercentile").textContent = `${result.bmi_percentile}th percentile`;
         
-        document.getElementById("result").style.backgroundColor = "yellow";
     } catch (error) {
-        console.error(error);
+        console.error("Analyze request failed", error);
         alert("Error connecting to backend or invalid inputs submitted.");
     }
 });
+
+

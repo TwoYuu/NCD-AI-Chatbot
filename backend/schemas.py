@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-
+from typing import Literal
 class UserHealthCreate(BaseModel):
     # Demographics and Metrics (Ensuring values are positive and realistic)
     age: int = Field(..., ge=1, le=120)
@@ -36,11 +36,16 @@ class UserHealthCreate(BaseModel):
     cannabis: bool
     excessive_drug_usage: int = Field(..., ge=1, le=5)
 
+    # Gender
+    gender: Literal["male", "female"]
+
 
 class UserHealthResponse(BaseModel):
     risk_score: float
     risk_level: str
     message: str
+    bmi: float
+    bmi_percentile: int
 
     # This allows Pydantic to read SQLAlchemy models directly
     class Config:

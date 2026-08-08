@@ -1,9 +1,22 @@
-# How you would call it in your main app logic:
-# data = db.query(UserHealth).filter(...).first()
-# score, level, message = calculate_score(data)
-# data.risk_score = score
-# data.risk_level = level
-# db.commit()
+# TODO:
+# Replace this placeholder with a real BMI-for-age percentile lookup
+# using WHO or CDC growth chart data.
+def calculate_bmi_percentile(age, gender, bmi):
+    """
+    Placeholder BMI percentile.
+
+    Replace this with a real BMI-for-age percentile calculation later.
+    """
+
+    percentile = 50
+
+    # Temporary placeholder to show gender affects the result
+    if gender == "male":
+        percentile += 5
+    else:
+        percentile -= 5
+
+    return percentile
 
 def calculate_score(data):
     # =========================================================================
@@ -69,13 +82,36 @@ def calculate_score(data):
     ]
     score += sum(BINARY_WEIGHTS[key] for key, active in habits if active)
 
-    # BMI & Age
+    # BMI
     bmi = data.weight / ((data.height / 100) ** 2)
-    if bmi < 18.5 or (25 <= bmi < 30): score += 1
-    elif bmi >= 30: score += 2
+    
 
+    # Age
     if data.age >= 60: score += 2
     elif data.age >= 40: score += 1
+
+    # Gender
+    gender = data.gender
+    
+
+    # BMI Percentile
+    bmi_percentile = calculate_bmi_percentile(
+        data.age,
+        data.gender,
+        bmi
+    )
+    if bmi_percentile < 5:
+        score += 1
+
+    elif bmi_percentile < 85:
+        score += 0
+
+    elif bmi_percentile < 95:
+        score += 1
+
+    else:
+        score += 2
+
 
     final_score = round(score, 2) # Saved as Float in database, keeping decimals intact for better tracking
 
@@ -84,7 +120,7 @@ def calculate_score(data):
     elif final_score <= 25: level, message = "Moderate", "Some improvements needed"
     else: level, message = "High", "High Health Risk; Please consult a doctor"
 
-    return final_score, level, message
+    return final_score, level, message, round(bmi, 1), bmi_percentile
 
 #For Future Reference:
 #For the AI, it can be kinda concerning if the user says that they are a 1 year old that
@@ -99,4 +135,4 @@ def calculate_score(data):
 #TODO: Interaction Effects: If bad_sleep > 1 & stress > 2: score += 1
 #TODO: VALIDATE the model by testing it (gather data from ppl around you)
 # State that the model is just a prediction and should not be used over proffessional advice
-#TODO: Extend index
+#TODO: BMI and Gender interaction
