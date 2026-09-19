@@ -19,6 +19,8 @@ app.add_middleware(
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
+        "http://192.168.1.103:5500",
+        "*", # TODO remove before using in production
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -71,6 +73,6 @@ def analyze(data: schemas.UserHealthCreate, db: Session = Depends(get_db)):
 
 # RUN APP
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 

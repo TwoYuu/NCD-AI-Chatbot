@@ -1,0 +1,681 @@
+
+/* =========================================================
+   HEALTH RISK ANALYZER
+   Modern Health-Tech Frontend
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    color: #172033;
+
+    /* Soft health-tech background */
+    background:
+        radial-gradient(circle at 10% 10%, rgba(79, 209, 197, 0.18), transparent 30%),
+        radial-gradient(circle at 90% 85%, rgba(96, 165, 250, 0.18), transparent 30%),
+        linear-gradient(135deg, #eef9f7 0%, #eef5ff 100%);
+
+    padding: 40px 20px;
+}
+
+
+/* =========================================================
+   2. MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+    padding: 42px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(31, 55, 72, 0.10),
+        0 4px 12px rgba(31, 55, 72, 0.05);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   3. MAIN TITLE
+   ========================================================= */
+
+h1 {
+    margin: 0;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    color: #14213d;
+}
+
+h1::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 4px;
+
+    margin: 14px auto 0;
+
+    background: linear-gradient(
+        90deg,
+        #14b8a6,
+        #3b82f6
+    );
+
+    border-radius: 999px;
+}
+
+
+/* =========================================================
+   4. FORM
+   ========================================================= */
+
+#healthForm {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   5. FORM PAGES
+   ========================================================= */
+
+.form-page {
+    width: 100%;
+}
+
+
+/*
+   JavaScript normally controls which page is visible.
+   This makes each page occupy the available width without
+   introducing unwanted grid behavior.
+*/
+
+.form-page fieldset {
+    width: 100%;
+}
+
+
+/* =========================================================
+   6. FIELDSET / SECTION CARD
+   ========================================================= */
+
+fieldset {
+    position: relative;
+
+    margin: 30px 0 0;
+    padding: 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4edf2;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(31, 55, 72, 0.06);
+}
+
+
+/* =========================================================
+   7. LEGEND
+   ========================================================= */
+
+legend {
+    display: block;
+
+    width: auto;
+
+    margin: 0 auto;
+    padding: 0 18px;
+
+    text-align: center;
+
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    font-weight: 750;
+
+    color: #14213d;
+
+    /*
+       The small colored line makes the heading feel intentional
+       rather than like the browser's default fieldset legend.
+    */
+}
+
+legend::after {
+    content: "";
+
+    display: block;
+
+    width: 38px;
+    height: 3px;
+
+    margin: 8px auto 0;
+
+    background: #14b8a6;
+
+    border-radius: 999px;
+}
+
+
+/* =========================================================
+   8. INPUT LAYOUT
+   ========================================================= */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+}
+
+
+/*
+   When there are multiple input groups, use a comfortable
+   two-column layout on larger screens.
+*/
+
+fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px 26px;
+}
+
+
+/*
+   Checkbox groups should span the entire card.
+*/
+
+.checkbox-group {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   9. LABELS
+   ========================================================= */
+
+label {
+    color: #344054;
+
+    font-size: 0.92rem;
+    font-weight: 650;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   10. INPUTS & SELECTS
+   ========================================================= */
+
+input,
+select {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #172033;
+
+    background: #f9fbfc;
+
+    border: 1px solid #d8e3e9;
+    border-radius: 10px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Placeholder / disabled option */
+
+select:invalid {
+    color: #8a98a5;
+}
+
+
+/* Hover */
+
+input:hover,
+select:hover {
+    border-color: #aebfc9;
+    background: #ffffff;
+}
+
+
+/* Focus */
+
+input:focus,
+select:focus {
+    background: #ffffff;
+
+    border-color: #14b8a6;
+
+    box-shadow:
+        0 0 0 3px rgba(20, 184, 166, 0.13);
+}
+
+
+/* Number input */
+
+input[type="number"] {
+    appearance: textfield;
+}
+
+
+/* =========================================================
+   11. CHECKBOXES
+   ========================================================= */
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    background: #f8fbfc;
+
+    border: 1px solid #e1ebef;
+    border-radius: 10px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.checkbox-group label:hover {
+    background: #f1f9f8;
+    border-color: #b9dfda;
+
+    transform: translateY(-1px);
+}
+
+
+.checkbox-group input[type="checkbox"] {
+    flex-shrink: 0;
+
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    accent-color: #14b8a6;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   12. NAVIGATION
+   ========================================================= */
+
+.form-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    width: 100%;
+
+    margin-top: 28px;
+    padding-top: 22px;
+
+    border-top: 1px solid #e5edf1;
+}
+
+
+/* Every navigation button gets its own width */
+
+.form-navigation button {
+    min-height: 50px;
+
+    padding: 13px 24px;
+
+    border: none;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+/* Back button */
+
+#backBtn {
+    width: auto;
+
+    color: #475467;
+    background: #eef2f4;
+
+    border: 1px solid #dce5e9;
+}
+
+
+#backBtn:hover {
+    background: #e4eaed;
+
+    transform: translateY(-1px);
+}
+
+
+/* Next button */
+
+#nextBtn {
+    width: auto;
+    min-width: 130px;
+
+    margin-left: auto;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #0f9f8d,
+        #14b8a6
+    );
+
+    box-shadow:
+        0 6px 15px rgba(20, 184, 166, 0.20);
+}
+
+
+#nextBtn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(20, 184, 166, 0.28);
+}
+
+
+/* Analyze button */
+
+#analyzeBtn {
+    width: auto;
+    min-width: 170px;
+
+    margin-left: auto;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    box-shadow:
+        0 6px 15px rgba(59, 130, 246, 0.20);
+}
+
+
+#analyzeBtn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(59, 130, 246, 0.28);
+}
+
+
+/* Button active state */
+
+.form-navigation button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   13. RESULT CARD
+   ========================================================= */
+
+.result {
+    width: 100%;
+
+    margin-top: 32px;
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdfa,
+            #eff6ff
+        );
+
+    border: 1px solid #d7eceb;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(31, 55, 72, 0.06);
+
+    overflow-wrap: break-word;
+}
+
+
+.result h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    color: #14213d;
+
+    font-size: 1.5rem;
+}
+
+
+.result p {
+    margin: 12px 0;
+
+    color: #475467;
+
+    line-height: 1.6;
+}
+
+
+.result strong {
+    color: #172033;
+}
+
+
+/* =========================================================
+   14. ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.25);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   15. TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 24px 14px;
+    }
+
+    .container {
+        padding: 28px 22px;
+
+        border-radius: 20px;
+    }
+
+    fieldset {
+        grid-template-columns: 1fr;
+
+        padding: 26px 22px;
+    }
+
+    .checkbox-group {
+        grid-column: auto;
+    }
+
+    .form-navigation {
+        margin-top: 24px;
+    }
+}
+
+
+/* =========================================================
+   16. SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 12px 8px;
+    }
+
+    .container {
+        padding: 24px 14px;
+
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    fieldset {
+        margin-top: 22px;
+        padding: 22px 16px;
+
+        border-radius: 15px;
+    }
+
+    legend {
+        font-size: 1.15rem;
+        padding: 0 10px;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input,
+    select {
+        min-height: 50px;
+
+        font-size: 16px;
+    }
+
+    .checkbox-group label {
+        min-height: 50px;
+
+        font-size: 0.9rem;
+    }
+
+    .form-navigation {
+        flex-wrap: wrap;
+
+        gap: 10px;
+    }
+
+    .form-navigation button {
+        min-height: 50px;
+
+        font-size: 0.9rem;
+    }
+
+    #backBtn {
+        flex: 0 0 auto;
+    }
+
+    #nextBtn,
+    #analyzeBtn {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .result {
+        padding: 22px 18px;
+    }
+}
+
+
+/* =========================================================
+   17. LARGE SCREENS
+   ========================================================= */
+
+@media (min-width: 1400px) {
+
+    body {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .container {
+        max-width: 1100px;
+    }
+}
+

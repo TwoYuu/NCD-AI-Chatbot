@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NCD Health AI</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="aistyle.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">✦</div>
+
+                    <div class="logo-text">
+                        <h2>Health AI</h2>
+                        <span>NCD Assistant</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- New Chat -->
+
+            <button class="new-chat-btn">
+                <span class="plus-icon">+</span>
+                New Conversation
+            </button>
+
+
+            <!-- Navigation -->
+
+            <div class="sidebar-section">
+
+                <p class="section-title">YOUR CONVERSATIONS</p>
+
+                <div class="conversation-list">
+
+                    <button class="conversation active">
+                        <span class="conversation-icon">💬</span>
+
+                        <span class="conversation-text">
+                            New Health Assessment
+                        </span>
+                    </button>
+
+                    <button class="conversation">
+                        <span class="conversation-icon">💬</span>
+
+                        <span class="conversation-text">
+                            Sleep & Lifestyle
+                        </span>
+                    </button>
+
+                    <button class="conversation">
+                        <span class="conversation-icon">💬</span>
+
+                        <span class="conversation-text">
+                            Understanding My Results
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom Navigation -->
+
+            <div class="sidebar-bottom">
+
+                <a href="/" class="sidebar-link">
+                    <span>⌂</span>
+                    Back to Home
+                </a>
+
+                <a href="/form/" class="sidebar-link">
+                    <span>▣</span>
+                    Use Health Form
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CHAT AREA
+        ========================== -->
+
+        <main class="chat-area">
+
+
+            <!-- Header -->
+
+            <header class="chat-header">
+
+                <div>
+
+                    <h1>NCD Health Assistant</h1>
+
+                    <p>
+                        Ask questions and explore your health habits
+                    </p>
+
+                </div>
+
+
+                <div class="status">
+
+                    <span class="status-dot"></span>
+
+                    AI Assistant Online
+
+                </div>
+
+            </header>
+
+
+            <!-- Messages -->
+
+            <section class="messages-container">
+
+
+                <!-- Welcome Message -->
+
+                <div class="welcome-section">
+
+                    <div class="welcome-icon">
+                        ✦
+                    </div>
+
+                    <h2>Hello! I'm your Health Assistant.</h2>
+
+                    <p>
+                        I can help you understand lifestyle factors related
+                        to your health and guide you through your health assessment.
+                    </p>
+
+                </div>
+
+
+                <!-- Example AI Message -->
+
+                <div class="message ai-message">
+
+                    <div class="avatar ai-avatar">
+                        AI
+                    </div>
+
+                    <div class="message-content">
+
+                        <div class="message-header">
+                            <strong>Health AI</strong>
+
+                            <span>Just now</span>
+                        </div>
+
+                        <div class="message-bubble">
+
+                            Hi! 👋 What would you like help with today?
+
+                            <br><br>
+
+                            You can ask me about:
+
+                            <ul>
+                                <li>Sleep habits</li>
+                                <li>Physical activity</li>
+                                <li>Nutrition</li>
+                                <li>Stress and wellbeing</li>
+                                <li>Your health assessment</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Suggestion Cards -->
+
+                <div class="suggestion-grid">
+
+                    <button class="suggestion-card">
+
+                        <span class="suggestion-icon">🌙</span>
+
+                        <div>
+                            <strong>Analyze my sleep</strong>
+
+                            <p>
+                                Understand how your sleeping habits may affect you.
+                            </p>
+                        </div>
+
+                    </button>
+
+
+                    <button class="suggestion-card">
+
+                        <span class="suggestion-icon">🏃</span>
+
+                        <div>
+                            <strong>Physical activity</strong>
+
+                            <p>
+                                Learn about movement and healthy activity habits.
+                            </p>
+                        </div>
+
+                    </button>
+
+
+                    <button class="suggestion-card">
+
+                        <span class="suggestion-icon">🥗</span>
+
+                        <div>
+                            <strong>Nutrition</strong>
+
+                            <p>
+                                Explore your eating and drinking habits.
+                            </p>
+                        </div>
+
+                    </button>
+
+
+                    <button class="suggestion-card">
+
+                        <span class="suggestion-icon">📊</span>
+
+                        <div>
+                            <strong>Start assessment</strong>
+
+                            <p>
+                                Begin exploring your health risk factors.
+                            </p>
+                        </div>
+
+                    </button>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 CHAT INPUT
+            ========================== -->
+
+            <div class="chat-input-area">
+
+                <div class="chat-input-wrapper">
+
+                    <button class="attachment-btn" title="Attach file">
+                        +
+                    </button>
+
+
+                    <textarea
+                        id="chatInput"
+                        placeholder="Message the Health Assistant..."
+                        rows="1"
+                    ></textarea>
+
+
+                    <button class="send-btn" id="sendButton">
+
+                        <span>➤</span>
+
+                    </button>
+
+                </div>
+
+
+                <p class="input-disclaimer">
+
+                    The Health AI provides educational information and is not a replacement for professional medical advice.
+
+                </p>
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="aiscript.js"></script>
+
+</body>
+</html>

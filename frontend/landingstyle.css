@@ -1,0 +1,526 @@
+/* =========================================
+   LANDING PAGE — NATURAL GREEN DESIGN
+========================================= */
+
+
+/* ---------- RESET ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+
+/* ---------- COLOR VARIABLES ---------- */
+
+:root {
+    --forest-green: #1f5138;
+    --deep-green: #163d2b;
+
+    --primary-green: #4f8a5b;
+    --accent-green: #75a96f;
+
+    --sage-green: #a9cfa0;
+    --light-sage: #d9ebd2;
+    --soft-green: #eaf5e5;
+
+    --cream: #faf8ee;
+    --warm-white: #fffef9;
+
+    --text-dark: #1d3528;
+    --text-muted: #52665a;
+
+    --border-color: rgba(31, 81, 56, 0.16);
+
+    --shadow-soft:
+        0 10px 30px rgba(31, 81, 56, 0.10);
+
+    --shadow-hover:
+        0 18px 45px rgba(31, 81, 56, 0.18);
+}
+
+
+/* ---------- BODY ---------- */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--text-dark);
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(169, 207, 160, 0.65),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(117, 169, 111, 0.30),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #eef8e9,
+            #dcefd5
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 35px;
+}
+
+
+/* =========================================
+   MAIN PAGE CONTAINER
+========================================= */
+
+.page {
+    width: 100%;
+    max-width: 1150px;
+    min-height: 680px;
+
+    background: rgba(255, 253, 248, 0.92);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow-soft);
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    /*
+        Gives the container a slightly
+        modern "glass" appearance
+    */
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+    padding: 55px 40px 40px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(220, 233, 215, 0.7),
+            rgba(247, 245, 237, 0.3)
+        );
+
+    border-bottom:
+        1px solid var(--border-color);
+}
+
+
+/* Main Title */
+
+.header h1 {
+    margin: 0 0 14px;
+
+    color: var(--forest-green);
+
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+}
+
+
+/* Subtitle */
+
+.header p {
+    margin: 0 auto;
+
+    max-width: 600px;
+
+    color: var(--text-muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.content {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 55px 45px 65px;
+}
+
+
+/* Question above the choices */
+
+.content-title {
+    margin-bottom: 35px;
+
+    color: var(--deep-green);
+
+    font-size: 1.35rem;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CHOICE BUTTONS
+========================================= */
+
+.choices {
+    width: 100%;
+    max-width: 950px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* Individual Choice Card */
+
+.choice-button {
+    min-height: 260px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffef9,
+            #edf7e8
+        );
+
+    border:
+        1px solid rgba(79, 127, 95, 0.18);
+
+    border-radius: 22px;
+
+    color: var(--text-dark);
+
+    text-decoration: none;
+
+    box-shadow:
+        0 6px 20px rgba(31, 77, 58, 0.06);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/*
+    Decorative natural circle
+    behind the card content
+*/
+
+.choice-button::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(117, 169, 111, 0.18);
+
+    top: -90px;
+    right: -70px;
+
+    transition:
+        transform 0.4s ease,
+        background 0.3s ease;
+}
+
+
+/* Bottom decorative shape */
+
+.choice-button::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(79, 127, 95, 0.08);
+
+    bottom: -70px;
+    left: -50px;
+}
+
+
+/*
+    Make sure the text stays
+    above decorative elements
+*/
+
+.choice-title,
+.choice-description {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* Card Title */
+
+.choice-title {
+    margin-bottom: 16px;
+
+    color: var(--forest-green);
+
+    font-size: 1.65rem;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* Card Description */
+
+.choice-description {
+    max-width: 320px;
+
+    color: var(--text-muted);
+
+    font-size: 0.98rem;
+
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   HOVER EFFECTS
+========================================= */
+
+.choice-button:hover {
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(31, 77, 58, 0.4);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+/* Animate decorative circle */
+
+.choice-button:hover::before {
+    transform:
+        scale(1.25);
+
+    background:
+        rgba(168, 195, 160, 0.3);
+}
+
+
+/* Active click */
+
+.choice-button:active {
+    transform:
+        translateY(-3px);
+}
+
+
+/* Keyboard accessibility */
+
+.choice-button:focus-visible {
+    outline:
+        3px solid var(--primary-green);
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    padding: 20px 30px;
+
+    background:
+        rgba(220, 233, 215, 0.35);
+
+    border-top:
+        1px solid var(--border-color);
+
+    color: var(--text-muted);
+
+    text-align: center;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+
+/* Tablets and smaller screens */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 20px;
+    }
+
+
+    .page {
+        min-height: auto;
+    }
+
+
+    .header {
+        padding: 45px 25px 35px;
+    }
+
+
+    .content {
+        padding: 45px 25px 55px;
+    }
+
+
+    .choices {
+        grid-template-columns: 1fr;
+
+        max-width: 550px;
+    }
+
+
+    .choice-button {
+        min-height: 220px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 0;
+
+        align-items: stretch;
+    }
+
+
+    .page {
+        min-height: 100vh;
+
+        border: none;
+        border-radius: 0;
+    }
+
+
+    .header {
+        padding:
+            55px
+            20px
+            35px;
+    }
+
+
+    .header h1 {
+        letter-spacing: -1px;
+    }
+
+
+    .header p {
+        font-size: 0.98rem;
+    }
+
+
+    .content {
+        padding:
+            40px
+            18px
+            50px;
+    }
+
+
+    .content-title {
+        font-size: 1.2rem;
+
+        margin-bottom: 25px;
+    }
+
+
+    .choice-button {
+        min-height: 200px;
+
+        padding: 30px 22px;
+
+        border-radius: 18px;
+    }
+
+
+    .choice-title {
+        font-size: 1.45rem;
+    }
+
+
+    .footer {
+        padding: 18px;
+    }
+}
