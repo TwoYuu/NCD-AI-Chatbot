@@ -42,7 +42,9 @@ form.addEventListener("submit", async (e) => {
     };
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/analyze", {
+        const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+        const apiUrl = isLocal ? "http://127.0.0.1:8000/analyze" : "http://api.yuu.students.benmega.com/analyze";
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
