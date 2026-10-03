@@ -4,17 +4,19 @@
 
 const chatInput = document.getElementById("chatInput");
 const sendButton = document.getElementById("sendButton");
-const messagesContainer = document.querySelector(".messages-container");
+const messagesContainer =
+    document.querySelector(".messages-container");
 
 
 // =========================
 // SEND MESSAGE
 // =========================
 
-function sendMessage() {
+async function sendMessage() {
 
-    // Get the user's message and remove extra spaces
+    // Get the user's message
     const message = chatInput.value.trim();
+
 
     // Don't send empty messages
     if (message === "") {
@@ -23,14 +25,20 @@ function sendMessage() {
 
 
     // =========================
-    // CREATE USER MESSAGE
+    // DISPLAY USER MESSAGE
     // =========================
 
-    const userMessage = document.createElement("div");
+    const userMessage =
+        document.createElement("div");
 
-    userMessage.classList.add("message", "user-message");
+    userMessage.classList.add(
+        "message",
+        "user-message"
+    );
+
 
     userMessage.innerHTML = `
+
         <div class="message-content">
 
             <div class="message-header">
@@ -46,32 +54,80 @@ function sendMessage() {
         <div class="avatar user-avatar">
             You
         </div>
+
     `;
 
 
-    // Add the user's message to the chat
     messagesContainer.appendChild(userMessage);
 
 
-    // Clear the input box
+    // Clear input
     chatInput.value = "";
 
 
-    // Scroll to the newest message
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    // Scroll to newest message
+    messagesContainer.scrollTop =
+        messagesContainer.scrollHeight;
 
 
     // =========================
-    // CREATE AI RESPONSE
+    // SEND MESSAGE TO BACKEND
     // =========================
 
-    setTimeout(() => {
+    try {
 
-        const aiMessage = document.createElement("div");
+        const response = await fetch(
+            "http://192.168.1.103:8000/ai",
+            {
+                method: "POST",
 
-        aiMessage.classList.add("message", "ai-message");
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    message: message
+                })
+            }
+        );
+
+
+        // Check whether backend returned an error
+        if (!response.ok) {
+
+            throw new Error(
+                "Server returned an error."
+            );
+        }
+
+
+        // Get JSON response
+        const resultData =
+            await response.json();
+
+
+        console.log(
+            "AI response:",
+            resultData
+        );
+
+
+        // =========================
+        // DISPLAY AI RESPONSE
+        // =========================
+
+        const aiMessage =
+            document.createElement("div");
+
+        aiMessage.classList.add(
+            "message",
+            "ai-message"
+        );
+
 
         aiMessage.innerHTML = `
+
             <div class="avatar ai-avatar">
                 AI
             </div>
@@ -83,22 +139,66 @@ function sendMessage() {
                 </div>
 
                 <div class="message-bubble">
-                    Message received
+                    ${resultData.response}
                 </div>
 
             </div>
+
         `;
 
 
-        // Add AI message
         messagesContainer.appendChild(aiMessage);
 
 
         // Scroll to newest message
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        messagesContainer.scrollTop =
+            messagesContainer.scrollHeight;
 
-    }, 500);
 
+    } catch (error) {
+
+        console.error(error);
+
+
+        // Display error in chat
+        const errorMessage =
+            document.createElement("div");
+
+        errorMessage.classList.add(
+            "message",
+            "ai-message"
+        );
+
+
+        errorMessage.innerHTML = `
+
+            <div class="avatar ai-avatar">
+                AI
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-header">
+                    <strong>Health AI</strong>
+                </div>
+
+                <div class="message-bubble">
+                    Sorry, I couldn't connect to the server.
+                </div>
+
+            </div>
+
+        `;
+
+
+        messagesContainer.appendChild(
+            errorMessage
+        );
+
+
+        messagesContainer.scrollTop =
+            messagesContainer.scrollHeight;
+    }
 }
 
 
@@ -106,24 +206,31 @@ function sendMessage() {
 // SEND BUTTON
 // =========================
 
-sendButton.addEventListener("click", sendMessage);
+sendButton.addEventListener(
+    "click",
+    sendMessage
+);
 
 
 // =========================
 // ENTER KEY
 // =========================
 
-chatInput.addEventListener("keydown", function(event) {
+chatInput.addEventListener(
+    "keydown",
+    function(event) {
 
-    // Enter sends the message
-    // Shift + Enter creates a new line
+        // Enter = send
+        // Shift + Enter = new line
 
-    if (event.key === "Enter" && !event.shiftKey) {
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        sendMessage();
-
+            sendMessage();
+        }
     }
-
-});
+);
