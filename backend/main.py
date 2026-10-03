@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import uvicorn
 #TODO: Start up backend, cd frontend + python -m http.server 5500 in terminal, localhost:5500 in google
+#pip install -r requirement.txt
+#Reminder: If all else fails, restart your computer!
 import models, schemas, scoring
 from database import engine, SessionLocal
 import os
@@ -83,8 +85,6 @@ app.add_middleware(
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "http://localhost:5500",
-        "*", # TODO remove before using in production
     ],
     allow_credentials=True,
     allow_methods=["*"],

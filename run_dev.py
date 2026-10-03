@@ -24,7 +24,7 @@ def main():
     # 3. Start the Frontend (Simple HTTP Server)
     print("[STARTING] Frontend Server (Port 5500)...")
     frontend_process = subprocess.Popen(
-        [python_exe, "-m", "http.server", "5500", "--directory", "frontend"]
+        [python_exe, "-m", "http.server", "5500", "--bind", "0.0.0.0", "--directory", "frontend"]
     )
 
     print("========================================")
