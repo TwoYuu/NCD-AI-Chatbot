@@ -5,3 +5,6 @@ backend/health.db
 health.db
 *.db
 *.env
+.venv
+
+__pycache__/

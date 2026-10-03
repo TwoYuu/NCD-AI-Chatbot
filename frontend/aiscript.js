@@ -77,7 +77,7 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-            "http://192.168.1.103:8000/ai",
+            `${CONFIG.API_BASE_URL}/ai`,
             {
                 method: "POST",
 
