@@ -248,7 +248,7 @@ document.getElementById("healthForm").addEventListener(
     //}
 //);
             const response = await fetch(
-                "http://localhost:8000/analyze",
+                `${CONFIG.API_BASE_URL}/analyze`,
                 {
                     method: "POST",
 
