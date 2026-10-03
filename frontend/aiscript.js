@@ -77,7 +77,7 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-            "http://192.168.1.103:8000/ai",
+            "http://localhost:8000/ai",
             {
                 method: "POST",
 
